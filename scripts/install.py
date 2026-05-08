@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Cross-Platform Installer
+Protonesk — Cross-Platform Installer
 
 Detects OS, installs dependencies, generates config, and sets up the service.
 
@@ -183,7 +183,7 @@ def print_summary(config=None):
 
     print()
     print("=" * 50)
-    print("  Proton Mail Bridge installed and ready")
+    print("  Protonesk installed and ready")
     print("=" * 50)
     print()
     print(f"  IMAP:   127.0.0.1:{imap_port}  (password: {password})")
@@ -235,7 +235,7 @@ def main():
         do_uninstall()
         return
 
-    print("Proton Mail Bridge — Installer")
+    print("Protonesk — Installer")
     print(f"OS: {platform.system()} {platform.release()}")
 
     check_python_version()

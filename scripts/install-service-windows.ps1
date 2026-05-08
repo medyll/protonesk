@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-    Proton Mail Bridge — Windows Service Manager (NSSM)
+    Protonesk — Windows Service Manager (NSSM)
 
 .DESCRIPTION
-    Installs, uninstalls, starts, stops, and checks status of the Proton Mail Bridge
+    Installs, uninstalls, starts, stops, and checks status of the Protonesk
     as a Windows service using NSSM (Non-Sucking Service Manager).
 
     Service runs under the current user account to maintain access to the Windows
@@ -32,8 +32,8 @@ $ErrorActionPreference = "Stop"
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 $SERVICE_NAME = "ProtonMailBridge"
-$DISPLAY_NAME = "Proton Mail Bridge"
-$DESCRIPTION = "Proton Mail Bridge — IMAP/SMTP proxy for Proton Mail"
+$DISPLAY_NAME = "Protonesk"
+$DESCRIPTION = "Protonesk — IMAP/SMTP proxy for Proton Mail"
 $APPDATA_DIR = Join-Path $env:LOCALAPPDATA "ProtonBridge"
 $NSSM_DIR = $APPDATA_DIR
 $NSSM_PATH = Join-Path $NSSM_DIR "nssm.exe"

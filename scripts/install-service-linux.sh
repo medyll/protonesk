@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Proton Mail Bridge — Linux systemd Service Installer
+# Protonesk — Linux systemd Service Installer
 #
 # Usage:
 #   ./install-service-linux.sh install

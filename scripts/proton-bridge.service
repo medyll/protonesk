@@ -1,5 +1,5 @@
 [Unit]
-Description=Proton Mail Bridge
+Description=Protonesk
 After=network.target
 
 [Service]

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Event Loop
+Protonesk — Event Loop
 
 Polls Proton's event API and distributes events to IMAP IDLE subscribers.
 

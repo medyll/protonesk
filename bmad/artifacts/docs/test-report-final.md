@@ -1,4 +1,4 @@
-# Test Report — Proton Mail Bridge
+# Test Report — Protonesk
 
 **Generated:** 2026-04-20  
 **Test Suite:** Full Regression  

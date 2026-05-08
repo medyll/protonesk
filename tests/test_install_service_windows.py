@@ -44,7 +44,7 @@ class TestConstants:
         assert '$SERVICE_NAME = "ProtonMailBridge"' in script_content
 
     def test_display_name(self, script_content):
-        assert '$DISPLAY_NAME = "Proton Mail Bridge"' in script_content
+        assert '$DISPLAY_NAME = "Protonesk"' in script_content
 
     def test_localappdata_path(self, script_content):
         assert "LOCALAPPDATA" in script_content

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Config loader
+Protonesk — Config loader
 
 Merges config.yaml defaults with CLI argparse Namespace.
 CLI args always win over config file.
