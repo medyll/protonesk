@@ -1,6 +1,4 @@
-# Proton Mail Bridge
-
-Alternative libre au [Proton Bridge officiel](https://proton.me/mail/bridge) (payant).
+# Protonesk
 
 Expose Proton Mail via IMAP/SMTP locaux — tout client mail ou agent AI s'y connecte comme à n'importe quel serveur mail.
 

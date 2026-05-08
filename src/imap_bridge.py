@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — IMAP Bridge
+Protonesk — IMAP Bridge
 
 Glue layer between IMAP server and Proton API.
 Handles: auth, mailbox listing, message mapping, fetch+decrypt, store flags.

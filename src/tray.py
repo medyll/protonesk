@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — System Tray Icon
+Protonesk — System Tray Icon
 
 Provides a system tray icon with status display and bridge control.
 Requires: pip install pystray pillow
@@ -49,7 +49,7 @@ class BridgeState(Enum):
 
 
 class TrayIcon:
-    """System tray icon for Proton Mail Bridge."""
+    """System tray icon for Protonesk."""
 
     def __init__(self, bridge_runner=None):
         """

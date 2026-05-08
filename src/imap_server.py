@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — IMAP Server
+Protonesk — IMAP Server
 
 Local IMAP4 server on 127.0.0.1:1143.
 Implements RFC 3501 subset: CAPABILITY, LOGIN, SELECT, LIST, FETCH, STORE, LOGOUT, NOOP.

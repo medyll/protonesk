@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — TLS Certificate Management
+Protonesk — TLS Certificate Management
 
 Auto-generates a self-signed certificate for local IMAP/SMTP TLS.
 Cert stored in ~/.proton-bridge/certs/ — never transmitted.

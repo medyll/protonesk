@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Proton Mail Bridge is **release-ready** with full packaging and deployment support. All 6 sprints complete across 22 stories. 198/198 tests pass with zero regressions.
+Protonesk is **release-ready** with full packaging and deployment support. All 6 sprints complete across 22 stories. 198/198 tests pass with zero regressions.
 
 **Release Status:** ✅ All features complete — Ready for v1.0.0 release candidate.
 
@@ -61,7 +61,7 @@ Proton Mail Bridge is **release-ready** with full packaging and deployment suppo
 
 | Sprint | Goal | Stories | Status |
 |--------|------|---------|--------|
-| S1 | Foundation — Core Proton Mail Bridge | 5 | ✅ |
+| S1 | Foundation — Core Protonesk | 5 | ✅ |
 | S2 | IMAP/SMTP bridge — standard protocols | 5 | ✅ |
 | S3 | TLS, IMAP IDLE, config — hardening | 4 | ✅ |
 | S4 | Multi-account support | 5 | ✅ |

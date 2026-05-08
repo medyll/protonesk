@@ -26,7 +26,7 @@ Describe "install-service-windows.ps1" {
     }
 
     It "Defines DISPLAY_NAME constant" {
-        $ScriptContent | Should -Match '\$DISPLAY_NAME\s*=\s*"Proton Mail Bridge"'
+        $ScriptContent | Should -Match '\$DISPLAY_NAME\s*=\s*"Protonesk"'
     }
 
     It "Uses LOCALAPPDATA for NSSM directory" {

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — SMTP Server
+Protonesk — SMTP Server
 
 Local SMTP server on 127.0.0.1:1025.
 Receives outgoing mail from any client, encrypts, sends via Proton API.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Multi-Account SMTP Handler
+Protonesk — Multi-Account SMTP Handler
 
 Routes outgoing mail to the correct Proton account based on the From: header.
 """

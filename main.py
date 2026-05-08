@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Daemon Entry Point
+Protonesk — Daemon Entry Point
 
 Starts local IMAP (port 1143) and SMTP (port 1025) servers.
 Any email client or AI agent can connect as if to a standard mail server.
@@ -43,7 +43,7 @@ RECONNECT_DELAY = 5  # seconds
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Proton Mail Bridge")
+    parser = argparse.ArgumentParser(description="Protonesk")
     parser.add_argument("--imap-port", type=int, default=1143)
     parser.add_argument("--smtp-port", type=int, default=1025)
     parser.add_argument("--imap-host", default="127.0.0.1")

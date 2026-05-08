@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Secret Management
+Protonesk — Secret Management
 
 Secure credential storage that hides secrets from AI/LLM access.
 
@@ -214,7 +214,7 @@ def setup_credentials():
     Call this ONCE to store credentials securely.
     AI cannot see the values entered.
     """
-    print("🔐 Proton Mail Bridge — Secure Credential Setup\n")
+    print("🔐 Protonesk — Secure Credential Setup\n")
 
     secrets = SecretManager()
 

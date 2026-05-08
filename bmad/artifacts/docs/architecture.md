@@ -1,4 +1,4 @@
-# Architecture Document — Proton Mail Bridge
+# Architecture Document — Protonesk
 
 **Version:** 1.0  
 **Status:** Production Ready  
@@ -9,7 +9,7 @@
 
 ## System Overview
 
-Proton Mail Bridge is a modular Python application that provides secure programmatic access to Proton Mail services. The architecture follows a **layered design** with clear separation of concerns.
+Protonesk is a modular Python application that provides secure programmatic access to Proton Mail services. The architecture follows a **layered design** with clear separation of concerns.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐

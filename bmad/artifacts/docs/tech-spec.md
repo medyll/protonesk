@@ -1,4 +1,4 @@
-# Technical Specification — Proton Mail Bridge
+# Technical Specification — Protonesk
 
 **Version:** 1.0  
 **Status:** Production Ready  
@@ -11,7 +11,7 @@
 
 ### 1.1 Purpose
 
-This document provides the technical specification for Proton Mail Bridge, a Python application enabling secure programmatic access to Proton Mail services.
+This document provides the technical specification for Protonesk, a Python application enabling secure programmatic access to Proton Mail services.
 
 ### 1.2 Scope
 

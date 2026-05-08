@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Session Manager
+Protonesk — Session Manager
 
 Manages multiple active Proton sessions for multi-account support.
 Each account is identified by its label from config.yaml.

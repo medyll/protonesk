@@ -1,4 +1,4 @@
-# Product Requirements Document — Proton Mail Bridge
+# Product Requirements Document — Protonesk
 
 **Version:** 1.0  
 **Status:** Production Ready  
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Proton Mail Bridge is a Python application that provides programmatic access to Proton Mail services for developers and AI agents. It enables secure email integration with full PGP encryption, SRP authentication, and message lifecycle management.
+Protonesk is a Python application that provides programmatic access to Proton Mail services for developers and AI agents. It enables secure email integration with full PGP encryption, SRP authentication, and message lifecycle management.
 
 **Primary Use Case:** AI agents and automation tools that need to read, send, and manage Proton Mail messages without exposing credentials or compromising end-to-end encryption.
 
@@ -258,7 +258,7 @@ Proton Mail Bridge is a Python application that provides programmatic access to 
 
 ## Appendix: Competitive Analysis
 
-| Feature | Proton Mail Bridge | Proton Mail App | Third-Party IMAP |
+| Feature | Protonesk | Proton Mail App | Third-Party IMAP |
 |---------|-------------------|-----------------|------------------|
 | Programmatic Access | ✅ Full API | ❌ None | ⚠️ Limited |
 | PGP Encryption | ✅ Automatic | ✅ Automatic | ❌ None |

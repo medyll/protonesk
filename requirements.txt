@@ -1,4 +1,4 @@
-# Proton Mail Bridge — Dependencies
+# Protonesk — Dependencies
 
 # === Core (required) ===
 

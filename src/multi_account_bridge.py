@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Proton Mail Bridge — Multi-Account IMAP Bridge
+Protonesk — Multi-Account IMAP Bridge
 
 Wraps per-account ProtonIMAPBridge instances with label-based namespace routing.
 Mailbox names are prefixed: "perso/INBOX", "pro/Sent", etc.

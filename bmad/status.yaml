@@ -61,7 +61,7 @@ artifacts:
 # ── Sprints ───────────────────────────────────────────────────────────────────
 sprints:
   - number: 1
-    goal: "Foundation - Core Proton Mail Bridge functionality"
+    goal: "Foundation - Core Protonesk functionality"
     status: completed
     stories:
       - id: S1-01
