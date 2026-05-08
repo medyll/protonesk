@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "Bash(python -m pytest tests/test_smtp_server.py -v)",
+      "Bash(pip install *)",
+      "Bash(python -m pytest tests/test_imap_server.py -v)",
+      "Bash(python -m pytest tests/test_imap_bridge.py -v)",
+      "Bash(python -m pytest tests/test_main.py -v)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(python -m pytest tests/ -v --tb=no -q)",
+      "Bash(python -m pytest tests/test_tls.py -v)",
+      "Bash(python -m pytest tests/test_imap_idle.py -v)",
+      "Bash(powershell *)",
+      "Bash(python -m pytest tests/test_imap_idle.py -v --timeout=10)",
+      "Bash(python -m pytest tests/test_config.py -v)",
+      "Bash(python -m pytest tests/ -q)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(python -m flake8 src/ main.py --max-line-length=120 --count)",
+      "Bash(python -m flake8 src/ main.py --max-line-length=120 --count --statistics)",
+      "Bash(python -m pytest tests/ -q --tb=short)",
+      "Bash(python -m flake8 src/ main.py --max-line-length=120 --count --select=E7,F4,F8,E722)",
+      "Bash(python -m flake8 src/ main.py --max-line-length=120 --select=E,F,W --exclude=W293,W291,E302,E303,E501,E402 --count --statistics)",
+      "Bash(python -m flake8 src/ main.py --max-line-length=120 --select=F541,E501,W291)",
+      "Bash(python -m black src/ main.py --line-length 120 --quiet)",
+      "Bash(python -m pytest tests/test_event_loop.py -v)",
+      "Bash(python -m pytest tests/test_idle_event_driven.py -v)"
+    ]
+  }
+}

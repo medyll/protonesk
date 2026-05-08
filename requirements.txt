@@ -1,0 +1,51 @@
+# Proton Mail Bridge — Dependencies
+
+# === Core (required) ===
+
+# Proton API (SRP authentication)
+# Note: proton-python-client is the official package
+# Install from GitHub if pip fails:
+# pip install git+https://github.com/ProtonMail/proton-python-client.git
+proton-python-client>=0.1.0
+
+# HTTP client (async support)
+httpx>=0.25.0
+requests>=2.16.0  # Fallback with TLS pinning
+
+# PGP decryption/encryption
+python-gnupg>=0.5.0
+PGPy>=0.6.0  # Pure Python alternative
+
+# Authentication & Security
+bcrypt>=4.0.0  # SRP password hashing
+pyopenssl>=23.0.0  # TLS/SSL handling
+cryptography>=41.0.0  # Session token encryption
+
+# 2FA Support
+pyotp>=2.9.0  # TOTP code generation
+
+# Environment & Secrets
+python-dotenv>=1.0.0  # .env file support
+keyring>=24.0.0  # Encrypted credential storage
+
+# HTML Sanitization
+beautifulsoup4>=4.12.0  # HTML → Markdown/clean text
+
+# IMAP/SMTP Bridge (Sprint 2)
+aiosmtpd>=1.4.0  # SMTP server (async)
+
+# Config + TLS (Sprint 3)
+pyyaml>=6.0.0    # config.yaml parsing
+
+# === Development (optional) ===
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Linting
+flake8>=6.0.0
+black>=23.0.0
+
+# Documentation
+markdown>=3.4.0

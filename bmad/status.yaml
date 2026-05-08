@@ -1,0 +1,272 @@
+# BMAD Status Template — Canonical Reference
+# This file is the single source of truth for BMAD project state.
+# Location: workspace/references/bmad/status-template.yaml
+#
+# Usage: Copy this template to your project's ./bmad/status.yaml
+# Command: cp workspace/references/bmad/status-template.yaml <project>/bmad/status.yaml
+
+# ── Core Identity ─────────────────────────────────────────────────────────────
+project: proton-mail-bridge
+phase: release
+progress: 100
+
+# ── Chain Protocol (CRITICAL) ─────────────────────────────────────────────────
+# These three fields MUST stay in sync. Inconsistency = broken chain.
+next_action: "Sprint 5 complete — 221/221 tests pass. All sprints done. Ready for release."
+next_command: "bmad-status"
+next_role: "scrum"
+active_role: "dev"
+
+# ── Dependencies (optional) ───────────────────────────────────────────────────
+dependencies: []
+
+# ── Phase Tracking ────────────────────────────────────────────────────────────
+phases:
+  - name: planning
+    status: done
+  - name: development
+    status: in_progress
+  - name: testing
+    status: in_progress
+  - name: release
+    status: pending
+
+# ── Strategic Dimensions (updated at end of every action) ─────────────────────
+marketing:
+  - "Sprint 6 complete: packaging & deployment — 4/4 stories, 198/198 tests pass"
+  - "Windows service via NSSM — auto-start with Windows, log rotation"
+  - "Linux systemd user service — Restart=on-failure, journalctl logs"
+  - "Cross-platform installer: python scripts/install.py"
+  - "System tray icon (pystray) — status indicator + bridge control"
+
+product:
+  - "All Sprint 6 acceptance criteria met"
+  - "Windows: install-service-windows.ps1 (install/uninstall/start/stop/status)"
+  - "Linux: install-service-linux.sh + proton-bridge.service unit file"
+  - "Cross-platform: install.py detects OS, installs deps, generates config"
+  - "Tray: --tray flag, colored status icon, menu control"
+
+far_vision:
+  - "Sprint 5 deferred: IMAP IDLE event-driven via Proton EventLoop"
+  - "Release candidate v1.0.0 ready — all core features complete"
+  - "Future: desktop tray app enhancements, unified inbox, attachment handling"
+
+# ── Artifacts ─────────────────────────────────────────────────────────────────
+artifacts:
+  prd: done
+  architecture: done
+  tech-spec: done
+  test-report: done
+
+# ── Sprints ───────────────────────────────────────────────────────────────────
+sprints:
+  - number: 1
+    goal: "Foundation - Core Proton Mail Bridge functionality"
+    status: completed
+    stories:
+      - id: S1-01
+        title: "Authentication module with SRP protocol"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S1-01.md"
+        test_result: pass
+      - id: S1-02
+        title: "Message formatting and HTML conversion"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S1-02.md"
+        test_result: pass
+      - id: S1-03
+        title: "Message lifecycle management"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S1-03.md"
+        test_result: pass
+      - id: S1-04
+        title: "Email sending with PGP encryption"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S1-04.md"
+        test_result: pass
+      - id: S1-05
+        title: "Secure secrets management"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S1-05.md"
+        test_result: pass
+  - number: 2
+    goal: "IMAP/SMTP bridge — expose Proton Mail via standard protocols"
+    status: completed
+    stories:
+      - id: S2-01
+        title: "Serveur SMTP local (aiosmtpd + ProtonSend)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S2-01.md"
+        test_result: pass
+      - id: S2-02
+        title: "Serveur IMAP core (asyncio, RFC 3501 subset)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S2-02.md"
+        test_result: pass
+      - id: S2-03
+        title: "Mapping IMAP ↔ Proton (dossiers, flags, cache)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S2-03-04.md"
+        test_result: pass
+      - id: S2-04
+        title: "FETCH message avec déchiffrement PGP inline"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S2-03-04.md"
+        test_result: pass
+      - id: S2-05
+        title: "Daemon entry point main.py"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S2-05.md"
+        test_result: pass
+  - number: 3
+    goal: "TLS, IMAP IDLE, config.yaml — production hardening"
+    status: completed
+    stories:
+      - id: S3-01
+        title: "TLS cert auto-gen + IMAP SSL"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S3.md"
+        test_result: pass
+      - id: S3-02
+        title: "SMTP STARTTLS"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S3.md"
+        test_result: pass
+      - id: S3-03
+        title: "IMAP IDLE (polling 30s)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S3.md"
+        test_result: pass
+      - id: S3-04
+        title: "config.yaml support"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S3.md"
+        test_result: pass
+  - number: 4
+    goal: "Multi-account support — multiple Proton accounts via one bridge"
+    status: completed
+    stories:
+      - id: S4-01
+        title: "Config multi-compte dans config.yaml"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S4-01.md"
+        test_result: pass
+      - id: S4-02
+        title: "Session manager (pool de sessions Proton)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S4-02.md"
+        test_result: pass
+      - id: S4-03
+        title: "IMAP namespace par compte"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S4-03.md"
+        test_result: pass
+      - id: S4-04
+        title: "SMTP routing par expéditeur"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S4-04.md"
+        test_result: pass
+      - id: S4-05
+        title: "Reconnexion indépendante par compte"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S4-05.md"
+        test_result: pass
+  - number: 6
+    goal: "Packaging & deployment — Windows service, Linux systemd, cross-platform installer, tray icon"
+    status: completed
+    stories:
+      - id: S6-01
+        title: "Service Windows (NSSM)"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S6.md"
+        test_result: pass
+      - id: S6-02
+        title: "Service systemd Linux"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S6.md"
+        test_result: pass
+      - id: S6-03
+        title: "Script install cross-platform"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S6.md"
+        test_result: pass
+      - id: S6-04
+        title: "Tray icon Windows"
+        status: complete
+        tests_executed: true
+        test_output: "bmad/artifacts/test-report-S6.md"
+        test_result: pass
+# Example:
+# sprints:
+#   - number: 1
+#     goal: "Foundation sprint — core architecture and setup"
+#     status: completed
+#     stories:
+#       - id: S1-01
+#         title: "Project initialization"
+#         status: complete
+#         tests_executed: true
+#         test_output: "bmad/artifacts/test-report-S1-01.md"
+#         test_result: pass
+#       - id: S1-02
+#         title: "Core module implementation"
+#         status: in_progress
+#         tests_executed: false
+#         test_output: null
+#         test_result: null
+
+# ── QA / Bugs (optional) ──────────────────────────────────────────────────────
+# Track known issues
+qa:
+  bugs: []
+  # Example:
+  # bugs:
+  #   - "Login fails on Safari mobile"
+  #   - "Export timeout for large datasets"
+
+# ── Notes ─────────────────────────────────────────────────────────────────────
+#
+# CHAIN PROTOCOL VALIDATION:
+# - next_role "pm" → next_command must be PM command (bmad plan prd, bmad plan spec)
+# - next_role "dev" → next_command must be dev command (bmad continue, bmad dev story)
+# - next_role "tester" → next_command must be test command (bmad test unit, bmad test e2e)
+# - next_role "scrum" → next_command must be scrum command (bmad sprint, bmad status)
+# - Inconsistency = HARD BLOCKER
+#
+# STORY COMPLETION RULE:
+# - A story CANNOT be marked "complete" without tests_executed: true
+# - test_output must reference an actual test report artifact
+# - test_result must be "pass" for story completion
+#
+# DIMENSION UPDATES:
+# - marketing: External-facing progress (demos, copy, launch readiness)
+# - product: Product decisions (user flows, blockers, features)
+# - far_vision: Strategic direction (future features, architecture, research)
+# - All three updated at end of every action
+#
+# YAML FORMATTING:
+# - Use double quotes for values with special chars: : # { } [ ] , & * ? | - < > = ! % @ \
+# - Always 2-space indentation, no tabs
+# - No block scalars (>- | -) in status.yaml — inline quoted strings only

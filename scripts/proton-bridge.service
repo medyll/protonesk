@@ -1,0 +1,14 @@
+[Unit]
+Description=Proton Mail Bridge
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/proton-bridge/main.py
+WorkingDirectory=/opt/proton-bridge
+Restart=on-failure
+RestartSec=5s
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
