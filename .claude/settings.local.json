@@ -25,7 +25,9 @@
       "Bash(python -m flake8 src/ main.py --max-line-length=120 --select=F541,E501,W291)",
       "Bash(python -m black src/ main.py --line-length 120 --quiet)",
       "Bash(python -m pytest tests/test_event_loop.py -v)",
-      "Bash(python -m pytest tests/test_idle_event_driven.py -v)"
+      "Bash(python -m pytest tests/test_idle_event_driven.py -v)",
+      "Bash(python -c \"import mcp; print\\('mcp', mcp.__version__ if hasattr\\(mcp,'__version__'\\) else 'ok'\\)\")",
+      "Bash(python -c \"import sys; sys.argv=['x']; import src.mcp_server as m; print\\('tools:', sorted\\(t.name for t in __import__\\('asyncio'\\).run\\(m.mcp.list_tools\\(\\)\\)\\)\\)\")"
     ]
   }
 }

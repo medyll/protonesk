@@ -37,6 +37,9 @@ aiosmtpd>=1.4.0  # SMTP server (async)
 # Config + TLS (Sprint 3)
 pyyaml>=6.0.0    # config.yaml parsing
 
+# MCP server (LLM agent access)
+mcp>=1.2.0       # Model Context Protocol — exposes mail tools to Claude/agents
+
 # === Development (optional) ===
 
 # Testing
