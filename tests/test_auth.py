@@ -17,8 +17,15 @@ from auth import ProtonAuth
 
 class TestProtonAuth:
     """Tests pour ProtonAuth."""
-    
-    def test_init_missing_credentials(self):
+
+    @pytest.fixture(autouse=True)
+    def isolate_session_file(self, tmp_path, monkeypatch):
+        """Keep session persistence out of the user's real ~/.protonesk."""
+        import auth
+        monkeypatch.setattr(auth, "SESSION_FILE", tmp_path / "session.json")
+
+    @patch('auth.get_credentials', side_effect=SystemExit)
+    def test_init_missing_credentials(self, mock_get_credentials):
         """Test: Init fails without credentials — raises ValueError with setup instructions."""
         with pytest.raises((ValueError, SystemExit)):
             ProtonAuth()  # No credentials provided
@@ -43,24 +50,31 @@ class TestProtonAuth:
         """Test: Authentication succeeds."""
         # Setup mock
         mock_session = MagicMock()
-        mock_session.is_authenticated.return_value = True
+        mock_session.UID = "test-uid"
+        mock_session.dump.return_value = {
+            "api_url": "https://mail.proton.me/api",
+            "appversion": "Other",
+            "User-Agent": "Protonesk",
+            "cookies": {},
+            "session_data": {"UID": "test-uid"},
+        }
         mock_session_class.return_value = mock_session
-        
+
         auth = ProtonAuth(username='test@proton.me', password='testpassword')
         session = auth.authenticate()
-        
+
         assert auth.session is not None
         assert auth.is_authenticated() == True
-        mock_session.login.assert_called_once()
-    
+        mock_session.authenticate.assert_called_once_with('test@proton.me', 'testpassword')
+
     @patch('auth.ProtonSession')
     def test_authenticate_failure(self, mock_session_class):
         """Test: Authentication fails."""
         # Setup mock to raise exception
-        mock_session_class.return_value.login.side_effect = Exception("Invalid credentials")
-        
+        mock_session_class.return_value.authenticate.side_effect = Exception("Invalid credentials")
+
         auth = ProtonAuth(username='test@proton.me', password='wrongpassword')
-        
+
         with pytest.raises(ValueError, match="SRP authentication failed"):
             auth.authenticate()
     

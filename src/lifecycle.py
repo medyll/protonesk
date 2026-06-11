@@ -8,7 +8,7 @@ Uses label management rather than destructive operations where possible.
 
 import time
 from typing import List, Optional
-from proton.session import ProtonSession
+from proton.api import Session as ProtonSession
 
 
 class MessageLifecycle:
@@ -23,7 +23,6 @@ class MessageLifecycle:
             cooldown_ms: Cooldown between write operations (default: 1s)
         """
         self.session = session
-        self.base_url = "https://mail.proton.me/api"
         self.cooldown_ms = cooldown_ms
         self.last_write_time = 0
 
@@ -40,10 +39,12 @@ class MessageLifecycle:
         if method in ["PUT", "POST", "PATCH", "DELETE"]:
             self._cooldown()
 
-        url = f"{self.base_url}{endpoint}"
-        response = self.session.request(method, url, **kwargs)
-        response.raise_for_status()
-        return response.json()
+        return self.session.api_request(
+            endpoint,
+            method=method.lower(),
+            params=kwargs.get("params"),
+            jsondata=kwargs.get("json"),
+        )
 
     def mark_as_read(self, message_id: str) -> bool:
         """

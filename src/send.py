@@ -8,7 +8,7 @@ Maintains cryptographic integrity throughout the process.
 
 import time
 from typing import Dict, List, Optional
-from proton.session import ProtonSession
+from proton.api import Session as ProtonSession
 
 
 class ProtonSend:
@@ -24,7 +24,6 @@ class ProtonSend:
         """
         self.session = session
         self.crypto = crypto_module
-        self.base_url = "https://mail.proton.me/api"
         self.cooldown_ms = 2000  # 2s between sends (human-like)
         self.last_send_time = 0
 
@@ -38,10 +37,12 @@ class ProtonSend:
 
     def _request(self, method: str, endpoint: str, **kwargs) -> dict:
         """Make API request."""
-        url = f"{self.base_url}{endpoint}"
-        response = self.session.request(method, url, **kwargs)
-        response.raise_for_status()
-        return response.json()
+        return self.session.api_request(
+            endpoint,
+            method=method.lower(),
+            params=kwargs.get("params"),
+            jsondata=kwargs.get("json"),
+        )
 
     def get_recipient_keys(self, email: str) -> Dict:
         """

@@ -21,6 +21,10 @@ import signal
 import sys
 import time
 
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
@@ -180,8 +184,8 @@ async def run(args):
                     try:
                         session_info = manager.get(label)
                         sess = session_info.get("session")
-                        if sess and hasattr(sess, "is_authenticated"):
-                            if not sess.is_authenticated():
+                        if sess is not None:
+                            if sess.UID is None:
                                 logger.warning(f"Session expired for '{label}', reconnecting...")
                                 try:
                                     manager.reconnect(label)

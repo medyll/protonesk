@@ -32,6 +32,7 @@ REQUIRED_PACKAGES = [
     "pyopenssl",
     "pyotp",
     "python-dotenv",
+    "mcp",
 ]
 
 SCRIPT_DIR = Path(__file__).parent
@@ -170,6 +171,36 @@ def install_service():
     print_ok("Service installed")
 
 
+def install_mcp_service():
+    """Install the MCP server as an auto-start service (LLM agent access)."""
+    os_name = platform.system()
+
+    if os_name == "Windows":
+        script = SCRIPT_DIR / "install-mcp-service-windows.ps1"
+        if not script.exists():
+            print_warn("MCP service script not found")
+            return
+        print_info("Installing MCP server service...")
+        subprocess.check_call(
+            ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(script), "install"],
+            cwd=PROJECT_ROOT
+        )
+    elif os_name == "Linux":
+        script = SCRIPT_DIR / "install-mcp-service-linux.sh"
+        if not script.exists():
+            print_warn("MCP service script not found")
+            return
+        os.chmod(script, 0o755)
+        print_info("Installing MCP systemd service...")
+        subprocess.check_call([str(script), "install"], cwd=PROJECT_ROOT)
+    else:
+        print_warn(f"MCP auto-service install not supported on {os_name} yet — "
+                   "run MCP manually: PROTON_MCP_HTTP=1 python src/mcp_server.py")
+        return
+
+    print_ok("MCP service installed")
+
+
 def print_summary(config=None):
     import yaml
 
@@ -188,8 +219,10 @@ def print_summary(config=None):
     print()
     print(f"  IMAP:   127.0.0.1:{imap_port}  (password: {password})")
     print(f"  SMTP:   127.0.0.1:{smtp_port}")
+    print(f"  MCP:    http://127.0.0.1:8787/mcp  (LLM agents)")
     print()
     print("  Thunderbird: Add account → IMAP manual → 127.0.0.1:" + str(imap_port))
+    print("  Claude:      claude mcp add --transport http proton-mail http://127.0.0.1:8787/mcp")
     print()
     print("  Start service:")
     if platform.system() == "Windows":
@@ -203,6 +236,12 @@ def do_uninstall():
     os_name = platform.system()
 
     if os_name == "Windows":
+        mcp_script = SCRIPT_DIR / "install-mcp-service-windows.ps1"
+        if mcp_script.exists():
+            subprocess.check_call(
+                ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(mcp_script), "uninstall"],
+                cwd=PROJECT_ROOT
+            )
         script = SCRIPT_DIR / "install-service-windows.ps1"
         if script.exists():
             subprocess.check_call(
@@ -210,6 +249,10 @@ def do_uninstall():
                 cwd=PROJECT_ROOT
             )
     elif os_name == "Linux":
+        mcp_script = SCRIPT_DIR / "install-mcp-service-linux.sh"
+        if mcp_script.exists():
+            os.chmod(mcp_script, 0o755)
+            subprocess.check_call([str(mcp_script), "uninstall"], cwd=PROJECT_ROOT)
         script = SCRIPT_DIR / "install-service-linux.sh"
         if script.exists():
             subprocess.check_call([str(script), "uninstall"], cwd=PROJECT_ROOT)
@@ -243,6 +286,7 @@ def main():
     generate_config()
     setup_credentials()
     install_service()
+    install_mcp_service()
     print_summary()
 
 

@@ -7,7 +7,8 @@ Wrapper for Proton's REST API with rate limiting and error handling.
 
 import time
 from typing import List
-from proton.session import ProtonSession
+from proton.api import Session as ProtonSession
+from proton.exceptions import ProtonAPIError
 
 
 class ProtonAPIClient:
@@ -15,7 +16,6 @@ class ProtonAPIClient:
 
     def __init__(self, session: ProtonSession):
         self.session = session
-        self.base_url = "https://mail.proton.me/api"
         self.max_retries = 3
         self.base_delay = 1.0  # seconds
 
@@ -26,7 +26,7 @@ class ProtonAPIClient:
         Args:
             method: HTTP method (GET, POST, etc.)
             endpoint: API endpoint (e.g., '/mail/v4/messages')
-            **kwargs: Additional request parameters
+            **kwargs: 'params' (query string) and/or 'json' (request body)
 
         Returns:
             dict: API response
@@ -34,26 +34,37 @@ class ProtonAPIClient:
         Raises:
             Exception: If request fails after retries
         """
-        url = f"{self.base_url}{endpoint}"
         last_error = None
 
         for attempt in range(self.max_retries):
             try:
-                response = self.session.request(method, url, **kwargs)
-                response.raise_for_status()
-                return response.json()
+                return self.session.api_request(
+                    endpoint,
+                    method=method.lower(),
+                    params=kwargs.get("params"),
+                    jsondata=kwargs.get("json"),
+                )
 
-            except Exception as e:
+            except ProtonAPIError as e:
                 last_error = e
 
                 # Check for rate limit (429)
-                if hasattr(e, "response") and e.response.status_code == 429:
+                if e.code == 429:
                     delay = self.base_delay * (2**attempt)
                     print(f"⏳ Rate limited, waiting {delay}s...")
                     time.sleep(delay)
                     continue
 
                 # Other errors - retry with backoff
+                if attempt < self.max_retries - 1:
+                    delay = self.base_delay * (2**attempt)
+                    print(f"⚠️  Request failed, retrying in {delay}s...")
+                    time.sleep(delay)
+                else:
+                    break
+
+            except Exception as e:
+                last_error = e
                 if attempt < self.max_retries - 1:
                     delay = self.base_delay * (2**attempt)
                     print(f"⚠️  Request failed, retrying in {delay}s...")

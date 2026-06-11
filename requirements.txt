@@ -3,10 +3,9 @@
 # === Core (required) ===
 
 # Proton API (SRP authentication)
-# Note: proton-python-client is the official package
-# Install from GitHub if pip fails:
-# pip install git+https://github.com/ProtonMail/proton-python-client.git
-proton-python-client>=0.1.0
+# Not on PyPI under this name — install separately:
+#   pip install setuptools python-gnupg
+#   pip install --no-build-isolation git+https://github.com/ProtonMail/proton-python-client.git
 
 # HTTP client (async support)
 httpx>=0.25.0
