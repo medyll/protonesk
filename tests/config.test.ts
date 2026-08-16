@@ -1,8 +1,9 @@
 import { describe, it, expect, afterEach, vi } from "vitest";
 
 // Avoid loading the real .env (it has real credentials) so these tests can
-// freely add/remove HYDROXIDE_* vars without leaking real values.
-vi.mock("dotenv/config", () => ({}));
+// freely add/remove HYDROXIDE_* vars without leaking real values. config.ts calls
+// dotenv.config() with an explicit package-root path, so the whole module is stubbed.
+vi.mock("dotenv", () => ({ default: { config: () => ({ parsed: {} }) } }));
 
 const ORIGINAL_ENV = { ...process.env };
 
